@@ -1,0 +1,367 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LISAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Attribute">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Label" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="AttributeProduct">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Value" Type="varchar" MaxLength="4000" />
+    <Property Name="Id_Product" Type="int" Nullable="false" />
+    <Property Name="Id_Attribute" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Catalog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ImportIdCatalog" Type="int" Nullable="false" />
+    <Property Name="Type" Type="varchar" MaxLength="50" />
+    <Property Name="Label" Type="varchar" MaxLength="200" />
+    <Property Name="Speed" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="Width" Type="int" Nullable="false" />
+    <Property Name="Height" Type="int" Nullable="false" />
+    <Property Name="Id_Operation" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Label" Type="varchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LimitDateShop">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StartDate" Type="datetime" Nullable="false" />
+    <Property Name="DisplayStartDate" Type="datetime" Nullable="false" />
+    <Property Name="DisplayEndDate" Type="datetime" Nullable="false" />
+    <Property Name="Id_Catalog" Type="int" Nullable="false" />
+    <Property Name="Id_Shop" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Media">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Path" Type="varchar" MaxLength="4000" />
+    <Property Name="Id_Product" Type="int" Nullable="false" />
+    <Property Name="Id_TypeMedia" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Operation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ImportIdOperation" Type="int" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="StartDate" Type="datetime" />
+    <Property Name="EndDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Page">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ImportIdPage" Type="int" Nullable="false" />
+    <Property Name="Number" Type="int" Nullable="false" />
+    <Property Name="Id_Catalog" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PositionProduct">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Coord_X" Type="int" Nullable="false" />
+    <Property Name="Coord_Y" Type="int" Nullable="false" />
+    <Property Name="Width" Type="int" Nullable="false" />
+    <Property Name="Height" Type="int" Nullable="false" />
+    <Property Name="Id_Page" Type="int" Nullable="false" />
+    <Property Name="Id_Product" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PriceProduct">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="25" Scale="0" />
+    <Property Name="PriceBeforeTicket" Type="decimal" Precision="25" Scale="0" />
+    <Property Name="PriceBeforeCrossed" Type="decimal" Precision="25" Scale="0" />
+    <Property Name="ReductionEuro" Type="decimal" Precision="25" Scale="0" />
+    <Property Name="ReductionPercent" Type="decimal" Precision="25" Scale="0" />
+    <Property Name="AdvantageEuro" Type="decimal" Precision="25" Scale="0" />
+    <Property Name="AdvantagePercent" Type="decimal" Precision="25" Scale="0" />
+    <Property Name="Ecotaxe" Type="decimal" Precision="25" Scale="0" />
+    <Property Name="Id_Catalog" Type="int" Nullable="false" />
+    <Property Name="Id_Product" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ImportIdProduct" Type="int" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Label" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="2000" />
+    <Property Name="Quantity" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Id_Category" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Shop">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ImportIdShop" Type="int" Nullable="false" />
+    <Property Name="Label" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="TypeMedia">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Label" Type="varchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Login" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Discrimant" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_AttributeProduct_Id_Attribute">
+    <End Role="Attribute" Type="Self.Attribute" Multiplicity="1" />
+    <End Role="AttributeProduct" Type="Self.AttributeProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Attribute">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AttributeProduct">
+        <PropertyRef Name="Id_Attribute" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttributeProduct_Id_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="AttributeProduct" Type="Self.AttributeProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AttributeProduct">
+        <PropertyRef Name="Id_Product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Catalog_Id_Operation">
+    <End Role="Operation" Type="Self.Operation" Multiplicity="1" />
+    <End Role="Catalog" Type="Self.Catalog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Operation">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Catalog">
+        <PropertyRef Name="Id_Operation" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LimitDateShop_Id_Catalog">
+    <End Role="Catalog" Type="Self.Catalog" Multiplicity="1" />
+    <End Role="LimitDateShop" Type="Self.LimitDateShop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Catalog">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LimitDateShop">
+        <PropertyRef Name="Id_Catalog" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LimitDateShop_Id_Shop">
+    <End Role="Shop" Type="Self.Shop" Multiplicity="1" />
+    <End Role="LimitDateShop" Type="Self.LimitDateShop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shop">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LimitDateShop">
+        <PropertyRef Name="Id_Shop" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Media_Id_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="Media" Type="Self.Media" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Media">
+        <PropertyRef Name="Id_Product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Media_Id_TypeMedia">
+    <End Role="TypeMedia" Type="Self.TypeMedia" Multiplicity="1" />
+    <End Role="Media" Type="Self.Media" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TypeMedia">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Media">
+        <PropertyRef Name="Id_TypeMedia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Page_Id_Catalog">
+    <End Role="Catalog" Type="Self.Catalog" Multiplicity="1" />
+    <End Role="Page" Type="Self.Page" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Catalog">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Page">
+        <PropertyRef Name="Id_Catalog" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PositionProduct_Id_Page">
+    <End Role="Page" Type="Self.Page" Multiplicity="1" />
+    <End Role="PositionProduct" Type="Self.PositionProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Page">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PositionProduct">
+        <PropertyRef Name="Id_Page" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PositionProduct_Id_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="PositionProduct" Type="Self.PositionProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PositionProduct">
+        <PropertyRef Name="Id_Product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PriceProduct_Id_Catalog">
+    <End Role="Catalog" Type="Self.Catalog" Multiplicity="1" />
+    <End Role="PriceProduct" Type="Self.PriceProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Catalog">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PriceProduct">
+        <PropertyRef Name="Id_Catalog" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PriceProduct_Id_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="PriceProduct" Type="Self.PriceProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PriceProduct">
+        <PropertyRef Name="Id_Product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Id_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="Id_Category" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LISAModelStoreContainer">
+    <EntitySet Name="Attribute" EntityType="Self.Attribute" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AttributeProduct" EntityType="Self.AttributeProduct" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Catalog" EntityType="Self.Catalog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LimitDateShop" EntityType="Self.LimitDateShop" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Media" EntityType="Self.Media" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Operation" EntityType="Self.Operation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Page" EntityType="Self.Page" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PositionProduct" EntityType="Self.PositionProduct" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PriceProduct" EntityType="Self.PriceProduct" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Shop" EntityType="Self.Shop" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TypeMedia" EntityType="Self.TypeMedia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_AttributeProduct_Id_Attribute" Association="Self.FK_AttributeProduct_Id_Attribute">
+      <End Role="Attribute" EntitySet="Attribute" />
+      <End Role="AttributeProduct" EntitySet="AttributeProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttributeProduct_Id_Product" Association="Self.FK_AttributeProduct_Id_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="AttributeProduct" EntitySet="AttributeProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Catalog_Id_Operation" Association="Self.FK_Catalog_Id_Operation">
+      <End Role="Operation" EntitySet="Operation" />
+      <End Role="Catalog" EntitySet="Catalog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LimitDateShop_Id_Catalog" Association="Self.FK_LimitDateShop_Id_Catalog">
+      <End Role="Catalog" EntitySet="Catalog" />
+      <End Role="LimitDateShop" EntitySet="LimitDateShop" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LimitDateShop_Id_Shop" Association="Self.FK_LimitDateShop_Id_Shop">
+      <End Role="Shop" EntitySet="Shop" />
+      <End Role="LimitDateShop" EntitySet="LimitDateShop" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Media_Id_Product" Association="Self.FK_Media_Id_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Media" EntitySet="Media" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Media_Id_TypeMedia" Association="Self.FK_Media_Id_TypeMedia">
+      <End Role="TypeMedia" EntitySet="TypeMedia" />
+      <End Role="Media" EntitySet="Media" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Page_Id_Catalog" Association="Self.FK_Page_Id_Catalog">
+      <End Role="Catalog" EntitySet="Catalog" />
+      <End Role="Page" EntitySet="Page" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PositionProduct_Id_Page" Association="Self.FK_PositionProduct_Id_Page">
+      <End Role="Page" EntitySet="Page" />
+      <End Role="PositionProduct" EntitySet="PositionProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PositionProduct_Id_Product" Association="Self.FK_PositionProduct_Id_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="PositionProduct" EntitySet="PositionProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PriceProduct_Id_Catalog" Association="Self.FK_PriceProduct_Id_Catalog">
+      <End Role="Catalog" EntitySet="Catalog" />
+      <End Role="PriceProduct" EntitySet="PriceProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PriceProduct_Id_Product" Association="Self.FK_PriceProduct_Id_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="PriceProduct" EntitySet="PriceProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Id_Category" Association="Self.FK_Product_Id_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

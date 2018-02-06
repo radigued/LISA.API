@@ -1,0 +1,393 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LISAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Attribute">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Label" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AttributeProduct" Relationship="Self.FK_AttributeProduct_Id_Attribute" FromRole="Attribute" ToRole="AttributeProduct" />
+  </EntityType>
+  <EntityType Name="AttributeProduct">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Value" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+    <Property Name="Id_Product" Type="Int32" Nullable="false" />
+    <Property Name="Id_Attribute" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Attribute" Relationship="Self.FK_AttributeProduct_Id_Attribute" FromRole="AttributeProduct" ToRole="Attribute" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_AttributeProduct_Id_Product" FromRole="AttributeProduct" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Catalog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ImportIdCatalog" Type="Int32" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Label" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Speed" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Width" Type="Int32" Nullable="false" />
+    <Property Name="Height" Type="Int32" Nullable="false" />
+    <Property Name="Id_Operation" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Operation" Relationship="Self.FK_Catalog_Id_Operation" FromRole="Catalog" ToRole="Operation" />
+    <NavigationProperty Name="LimitDateShop" Relationship="Self.FK_LimitDateShop_Id_Catalog" FromRole="Catalog" ToRole="LimitDateShop" />
+    <NavigationProperty Name="Page" Relationship="Self.FK_Page_Id_Catalog" FromRole="Catalog" ToRole="Page" />
+    <NavigationProperty Name="PriceProduct" Relationship="Self.FK_PriceProduct_Id_Catalog" FromRole="Catalog" ToRole="PriceProduct" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Label" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Product_Id_Category" FromRole="Category" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="LimitDateShop">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DisplayStartDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DisplayEndDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Id_Catalog" Type="Int32" Nullable="false" />
+    <Property Name="Id_Shop" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Catalog" Relationship="Self.FK_LimitDateShop_Id_Catalog" FromRole="LimitDateShop" ToRole="Catalog" />
+    <NavigationProperty Name="Shop" Relationship="Self.FK_LimitDateShop_Id_Shop" FromRole="LimitDateShop" ToRole="Shop" />
+  </EntityType>
+  <EntityType Name="Media">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Path" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+    <Property Name="Id_Product" Type="Int32" Nullable="false" />
+    <Property Name="Id_TypeMedia" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Media_Id_Product" FromRole="Media" ToRole="Product" />
+    <NavigationProperty Name="TypeMedia" Relationship="Self.FK_Media_Id_TypeMedia" FromRole="Media" ToRole="TypeMedia" />
+  </EntityType>
+  <EntityType Name="Operation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ImportIdOperation" Type="Int32" Nullable="false" />
+    <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Precision="3" />
+    <Property Name="EndDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Catalog" Relationship="Self.FK_Catalog_Id_Operation" FromRole="Operation" ToRole="Catalog" />
+  </EntityType>
+  <EntityType Name="Page">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ImportIdPage" Type="Int32" Nullable="false" />
+    <Property Name="Number" Type="Int32" Nullable="false" />
+    <Property Name="Id_Catalog" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Catalog" Relationship="Self.FK_Page_Id_Catalog" FromRole="Page" ToRole="Catalog" />
+    <NavigationProperty Name="PositionProduct" Relationship="Self.FK_PositionProduct_Id_Page" FromRole="Page" ToRole="PositionProduct" />
+  </EntityType>
+  <EntityType Name="PositionProduct">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Coord_X" Type="Int32" Nullable="false" />
+    <Property Name="Coord_Y" Type="Int32" Nullable="false" />
+    <Property Name="Width" Type="Int32" Nullable="false" />
+    <Property Name="Height" Type="Int32" Nullable="false" />
+    <Property Name="Id_Page" Type="Int32" Nullable="false" />
+    <Property Name="Id_Product" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Page" Relationship="Self.FK_PositionProduct_Id_Page" FromRole="PositionProduct" ToRole="Page" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_PositionProduct_Id_Product" FromRole="PositionProduct" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="PriceProduct">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Price" Type="Decimal" Precision="25" Scale="0" />
+    <Property Name="PriceBeforeTicket" Type="Decimal" Precision="25" Scale="0" />
+    <Property Name="PriceBeforeCrossed" Type="Decimal" Precision="25" Scale="0" />
+    <Property Name="ReductionEuro" Type="Decimal" Precision="25" Scale="0" />
+    <Property Name="ReductionPercent" Type="Decimal" Precision="25" Scale="0" />
+    <Property Name="AdvantageEuro" Type="Decimal" Precision="25" Scale="0" />
+    <Property Name="AdvantagePercent" Type="Decimal" Precision="25" Scale="0" />
+    <Property Name="Ecotaxe" Type="Decimal" Precision="25" Scale="0" />
+    <Property Name="Id_Catalog" Type="Int32" Nullable="false" />
+    <Property Name="Id_Product" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Catalog" Relationship="Self.FK_PriceProduct_Id_Catalog" FromRole="PriceProduct" ToRole="Catalog" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_PriceProduct_Id_Product" FromRole="PriceProduct" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ImportIdProduct" Type="Int32" Nullable="false" />
+    <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Label" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="Quantity" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Id_Category" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AttributeProduct" Relationship="Self.FK_AttributeProduct_Id_Product" FromRole="Product" ToRole="AttributeProduct" />
+    <NavigationProperty Name="Category" Relationship="Self.FK_Product_Id_Category" FromRole="Product" ToRole="Category" />
+    <NavigationProperty Name="Media" Relationship="Self.FK_Media_Id_Product" FromRole="Product" ToRole="Media" />
+    <NavigationProperty Name="PositionProduct" Relationship="Self.FK_PositionProduct_Id_Product" FromRole="Product" ToRole="PositionProduct" />
+    <NavigationProperty Name="PriceProduct" Relationship="Self.FK_PriceProduct_Id_Product" FromRole="Product" ToRole="PriceProduct" />
+  </EntityType>
+  <EntityType Name="Shop">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ImportIdShop" Type="Int32" Nullable="false" />
+    <Property Name="Label" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="LimitDateShop" Relationship="Self.FK_LimitDateShop_Id_Shop" FromRole="Shop" ToRole="LimitDateShop" />
+  </EntityType>
+  <EntityType Name="TypeMedia">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Label" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Media" Relationship="Self.FK_Media_Id_TypeMedia" FromRole="TypeMedia" ToRole="Media" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Login" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Discrimant" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_AttributeProduct_Id_Attribute">
+    <End Role="Attribute" Type="Self.Attribute" Multiplicity="1" />
+    <End Role="AttributeProduct" Type="Self.AttributeProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Attribute">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AttributeProduct">
+        <PropertyRef Name="Id_Attribute" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttributeProduct_Id_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="AttributeProduct" Type="Self.AttributeProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AttributeProduct">
+        <PropertyRef Name="Id_Product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Catalog_Id_Operation">
+    <End Role="Operation" Type="Self.Operation" Multiplicity="1" />
+    <End Role="Catalog" Type="Self.Catalog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Operation">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Catalog">
+        <PropertyRef Name="Id_Operation" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LimitDateShop_Id_Catalog">
+    <End Role="Catalog" Type="Self.Catalog" Multiplicity="1" />
+    <End Role="LimitDateShop" Type="Self.LimitDateShop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Catalog">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LimitDateShop">
+        <PropertyRef Name="Id_Catalog" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Page_Id_Catalog">
+    <End Role="Catalog" Type="Self.Catalog" Multiplicity="1" />
+    <End Role="Page" Type="Self.Page" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Catalog">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Page">
+        <PropertyRef Name="Id_Catalog" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PriceProduct_Id_Catalog">
+    <End Role="Catalog" Type="Self.Catalog" Multiplicity="1" />
+    <End Role="PriceProduct" Type="Self.PriceProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Catalog">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PriceProduct">
+        <PropertyRef Name="Id_Catalog" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Id_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="Id_Category" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LimitDateShop_Id_Shop">
+    <End Role="Shop" Type="Self.Shop" Multiplicity="1" />
+    <End Role="LimitDateShop" Type="Self.LimitDateShop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shop">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LimitDateShop">
+        <PropertyRef Name="Id_Shop" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Media_Id_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="Media" Type="Self.Media" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Media">
+        <PropertyRef Name="Id_Product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Media_Id_TypeMedia">
+    <End Role="TypeMedia" Type="Self.TypeMedia" Multiplicity="1" />
+    <End Role="Media" Type="Self.Media" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TypeMedia">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Media">
+        <PropertyRef Name="Id_TypeMedia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PositionProduct_Id_Page">
+    <End Role="Page" Type="Self.Page" Multiplicity="1" />
+    <End Role="PositionProduct" Type="Self.PositionProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Page">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PositionProduct">
+        <PropertyRef Name="Id_Page" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PositionProduct_Id_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="PositionProduct" Type="Self.PositionProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PositionProduct">
+        <PropertyRef Name="Id_Product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PriceProduct_Id_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="PriceProduct" Type="Self.PriceProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PriceProduct">
+        <PropertyRef Name="Id_Product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LISAEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Attribute" EntityType="Self.Attribute" />
+    <EntitySet Name="AttributeProduct" EntityType="Self.AttributeProduct" />
+    <EntitySet Name="Catalog" EntityType="Self.Catalog" />
+    <EntitySet Name="Category" EntityType="Self.Category" />
+    <EntitySet Name="LimitDateShop" EntityType="Self.LimitDateShop" />
+    <EntitySet Name="Media" EntityType="Self.Media" />
+    <EntitySet Name="Operation" EntityType="Self.Operation" />
+    <EntitySet Name="Page" EntityType="Self.Page" />
+    <EntitySet Name="PositionProduct" EntityType="Self.PositionProduct" />
+    <EntitySet Name="PriceProduct" EntityType="Self.PriceProduct" />
+    <EntitySet Name="Product" EntityType="Self.Product" />
+    <EntitySet Name="Shop" EntityType="Self.Shop" />
+    <EntitySet Name="TypeMedia" EntityType="Self.TypeMedia" />
+    <EntitySet Name="User" EntityType="Self.User" />
+    <AssociationSet Name="FK_AttributeProduct_Id_Attribute" Association="Self.FK_AttributeProduct_Id_Attribute">
+      <End Role="Attribute" EntitySet="Attribute" />
+      <End Role="AttributeProduct" EntitySet="AttributeProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttributeProduct_Id_Product" Association="Self.FK_AttributeProduct_Id_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="AttributeProduct" EntitySet="AttributeProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Catalog_Id_Operation" Association="Self.FK_Catalog_Id_Operation">
+      <End Role="Operation" EntitySet="Operation" />
+      <End Role="Catalog" EntitySet="Catalog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LimitDateShop_Id_Catalog" Association="Self.FK_LimitDateShop_Id_Catalog">
+      <End Role="Catalog" EntitySet="Catalog" />
+      <End Role="LimitDateShop" EntitySet="LimitDateShop" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Page_Id_Catalog" Association="Self.FK_Page_Id_Catalog">
+      <End Role="Catalog" EntitySet="Catalog" />
+      <End Role="Page" EntitySet="Page" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PriceProduct_Id_Catalog" Association="Self.FK_PriceProduct_Id_Catalog">
+      <End Role="Catalog" EntitySet="Catalog" />
+      <End Role="PriceProduct" EntitySet="PriceProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Id_Category" Association="Self.FK_Product_Id_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LimitDateShop_Id_Shop" Association="Self.FK_LimitDateShop_Id_Shop">
+      <End Role="Shop" EntitySet="Shop" />
+      <End Role="LimitDateShop" EntitySet="LimitDateShop" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Media_Id_Product" Association="Self.FK_Media_Id_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Media" EntitySet="Media" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Media_Id_TypeMedia" Association="Self.FK_Media_Id_TypeMedia">
+      <End Role="TypeMedia" EntitySet="TypeMedia" />
+      <End Role="Media" EntitySet="Media" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PositionProduct_Id_Page" Association="Self.FK_PositionProduct_Id_Page">
+      <End Role="Page" EntitySet="Page" />
+      <End Role="PositionProduct" EntitySet="PositionProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PositionProduct_Id_Product" Association="Self.FK_PositionProduct_Id_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="PositionProduct" EntitySet="PositionProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PriceProduct_Id_Product" Association="Self.FK_PriceProduct_Id_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="PriceProduct" EntitySet="PriceProduct" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

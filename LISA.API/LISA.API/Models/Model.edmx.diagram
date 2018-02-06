@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3a0dfbc95aa0453ea0e080f7d3f93a61" Name="Diagram1">
+        <EntityTypeShape EntityType="LISAModel.Attribute" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LISAModel.AttributeProduct" Width="1.5" PointX="5.25" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LISAModel.Catalog" Width="1.5" PointX="3.75" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LISAModel.Category" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LISAModel.LimitDateShop" Width="1.5" PointX="9" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LISAModel.Media" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LISAModel.Operation" Width="1.5" PointX="1.5" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LISAModel.Page" Width="1.5" PointX="6" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LISAModel.PositionProduct" Width="1.5" PointX="8.25" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LISAModel.PriceProduct" Width="1.5" PointX="5.25" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LISAModel.Product" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LISAModel.Shop" Width="1.5" PointX="6.75" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="LISAModel.TypeMedia" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LISAModel.User" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="LISAModel.FK_AttributeProduct_Id_Attribute" ManuallyRouted="false" />
+        <AssociationConnector Association="LISAModel.FK_AttributeProduct_Id_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="LISAModel.FK_Catalog_Id_Operation" ManuallyRouted="false" />
+        <AssociationConnector Association="LISAModel.FK_LimitDateShop_Id_Catalog" ManuallyRouted="false" />
+        <AssociationConnector Association="LISAModel.FK_Page_Id_Catalog" ManuallyRouted="false" />
+        <AssociationConnector Association="LISAModel.FK_PriceProduct_Id_Catalog" ManuallyRouted="false" />
+        <AssociationConnector Association="LISAModel.FK_Product_Id_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="LISAModel.FK_LimitDateShop_Id_Shop" ManuallyRouted="false" />
+        <AssociationConnector Association="LISAModel.FK_Media_Id_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="LISAModel.FK_Media_Id_TypeMedia" ManuallyRouted="false" />
+        <AssociationConnector Association="LISAModel.FK_PositionProduct_Id_Page" ManuallyRouted="false" />
+        <AssociationConnector Association="LISAModel.FK_PositionProduct_Id_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="LISAModel.FK_PriceProduct_Id_Product" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
