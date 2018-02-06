@@ -18,6 +18,7 @@ namespace LISA.API.Models
         public LISAEntities()
             : base("name=LISAEntities")
         {
+            this.Configuration.ProxyCreationEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
